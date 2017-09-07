@@ -1,5 +1,5 @@
 {% if menu.items is defined and menu %}
-    {% if multi_is_granted(app.user.roles, menu.roles ?? []) %}
+    {% if is_granted(app.user.roles, menu.roles ?? []) %}
         <div id="tabs">
             <ul class="nav nav-tabs">
                 {% for item in menu.items %}
