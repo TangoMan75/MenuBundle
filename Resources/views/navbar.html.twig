@@ -16,11 +16,14 @@
                         {% if menu.icon is defined and menu.icon %}
                             <span class="{{ menu.icon }}" aria-hidden="true"></span>
                         {% endif %}
-                        {{ menu.label ?? '' }}
+                        {% if menu.label is defined and menu.label %}
+                            {{ menu.label|trans }}
+                        {% endif %}
                     </a>
                 {% endif %}
             </div>
             <div class="collapse navbar-collapse">
+                {# USER IS AUTHENTICATED #}
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                     {% if is_granted(menu.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
                         <ul class="nav navbar-nav navbar-left">
@@ -34,7 +37,7 @@
                                                     <span class="{{ item.subMenu.icon }}" aria-hidden="true"></span>
                                                 {% endif %}
                                                 {% if item.subMenu.label is defined and item.subMenu.label %}
-                                                    {{ item.subMenu.label }}
+                                                    {{ item.subMenu.label|trans }}
                                                 {% endif %}
                                                 <span class="caret"></span>
                                             </a>
@@ -50,13 +53,19 @@
                                                                 <li>
                                                             {% endif %}
                                                             {% if subItem.route is defined and subItem.route %}
-                                                                <a href="{{ path(subItem.route) }}">
+                                                                <a
+                                                                        {% if subItem.callback is defined and subItem.callback %}
+                                                                            href="{{ subItem.route ? path(subItem.route, {'callback': app.request.uri|callback }) : '#' }}"
+                                                                        {% else %}
+                                                                            href="{{ subItem.route ? path(subItem.route) : '#' }}"
+                                                                        {% endif %}
+                                                                >
                                                                     {% if subItem.icon is defined and subItem.icon %}
                                                                         <span class="{{ subItem.icon }}"
                                                                               aria-hidden="true"></span>
                                                                     {% endif %}
                                                                     {% if subItem.label is defined and subItem.label %}
-                                                                        {{ subItem.label }}
+                                                                        {{ subItem.label|trans }}
                                                                     {% endif %}
                                                                 </a>
                                                             {% endif %}
@@ -68,7 +77,7 @@
                                                                           aria-hidden="true"></span>
                                                                 {% endif %}
                                                                 {% if subItem.label is defined and subItem.label %}
-                                                                    {{ subItem.label }}
+                                                                    {{ subItem.label|trans }}
                                                                 {% endif %}
                                                             </li>
                                                         {% endif %}
@@ -78,19 +87,25 @@
                                         </li>
                                     {% endif %}
                                 {% else %}
-
+                                    {# USER IS NOT LOGGED IN #}
                                     {% if is_granted(item.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
                                         {% if item.active is defined %}
                                         <li{% if app.request.attributes.get('_route') starts with item.active %} class="active"{% endif %}>
                                         {% else %}
                                             <li>
                                         {% endif %}
-                                        <a href="{{ item.route ? path(item.route) : '#' }}">
+                                        <a
+                                                {% if item.callback is defined and item.callback %}
+                                                    href="{{ item.route ? path(item.route, {'callback': app.request.uri|callback }) : '#' }}"
+                                                {% else %}
+                                                    href="{{ item.route ? path(item.route) : '#' }}"
+                                                {% endif %}
+                                        >
                                             {% if item.icon is defined and item.icon %}
                                                 <span class="{{ item.icon }}" aria-hidden="true"></span>
                                             {% endif %}
                                             {% if item.label is defined and item.label %}
-                                                {{ item.label }}
+                                                {{ item.label|trans }}
                                             {% endif %}
                                         </a>
                                         </li>

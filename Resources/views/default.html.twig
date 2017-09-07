@@ -12,12 +12,20 @@
                             {% else %}
                                 <li>
                             {% endif %}
-                            <a href="{{ item.route ? path(item.route) : '#' }}">
+                            <a
+                                    {% if item.callback is defined and item.callback %}
+                                        href="{{ item.route ? path(item.route, {'callback': app.request.uri|callback }) : '#' }}"
+                                    {% else %}
+                                        href="{{ item.route ? path(item.route) : '#' }}"
+                                    {% endif %}
+                            >
                                 {% if item.icon is defined and item.icon %}
                                     <span class="{{ item.icon }}"></span>
                                 {% endif %}
                                 <span {% if item.icon is defined and item.icon %} class="hidden-sm"{% endif %}>
-                                    {{ item.label ?? '' }}
+                                    {% if item.label is defined and item.label %}
+                                        {{ item.label|trans }}
+                                    {% endif %}
                                 </span>
                             </a>
                             </li>
