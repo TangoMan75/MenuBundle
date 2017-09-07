@@ -1,6 +1,6 @@
 {% if menu.items is defined and menu %}
     {% if is_granted(app.user.roles, menu.roles ?? []) %}
-        <nav class="sidebar-menu navbar navbar-default">
+        <nav class="navbar navbar-default">
             <ul class="nav nav-pills nav-stacked">
                 {% for item in menu.items %}
                     {% if is_granted(item.subMenu.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
@@ -16,7 +16,9 @@
                                 {% if item.icon is defined and item.icon %}
                                     <span class="{{ item.icon }}"></span>
                                 {% endif %}
-                                {{ item.label ?? '' }}
+                                <span {% if item.icon is defined and item.icon %} class="hidden-sm"{% endif %}>
+                                    {{ item.label ?? '' }}
+                                </span>
                             </a>
                             </li>
                         {% endif %}
