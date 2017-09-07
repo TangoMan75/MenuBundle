@@ -1,5 +1,5 @@
 {% if menu.items is defined and menu %}
-    {% if is_granted(app.user.roles, menu.roles ?? []) %}
+    {% if is_granted(app.user.roles, menu.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
         <div id="tabs">
             <ul class="nav nav-tabs">
                 {% for item in menu.items %}
