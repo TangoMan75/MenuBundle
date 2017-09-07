@@ -296,7 +296,7 @@ class Menu implements \JsonSerializable
         }
 
         if ($this->items) {
-            $json['items'] = $this->items->jsonSerialize();
+            $json['items'] = $items;
         }
 
         return $json;
