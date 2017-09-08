@@ -54,10 +54,20 @@
                                                             {% endif %}
                                                             {% if subItem.route is defined and subItem.route %}
                                                                 <a
-                                                                        {% if subItem.callback is defined and subItem.callback %}
-                                                                            href="{{ subItem.route ? path(subItem.route, {'callback': app.request.uri|callback }) : '#' }}"
+                                                                        {% if subItem.route is defined and subItem.route %}
+                                                                            {% if subItem.callback is defined and subItem.callback %}
+                                                                                href="{{ path(subItem.route, { 'callback': app.request.uri|callback }) }}"
+                                                                            {% elseif subItem.id is defined and subItem.id %}
+                                                                                href="{{ path(subItem.route, { 'id': subItem.id, 'callback': app.request.uri|callback }) }}"
+                                                                            {% elseif subItem.slug is defined and subItem.slug %}
+                                                                                href="{{ path(subItem.route, { 'slug': subItem.parameter.slug, 'callback': app.request.uri|callback }) }}"
+                                                                            {% else %}
+                                                                                href="{{ path(subItem.route) }}"
+                                                                            {% endif %}
+                                                                        {% elseif subItem.anchor and subItem.anchor %}
+                                                                            href="#{{ subItem.anchor }}"
                                                                         {% else %}
-                                                                            href="{{ subItem.route ? path(subItem.route) : '#' }}"
+                                                                            href="#"
                                                                         {% endif %}
                                                                 >
                                                                     {% if subItem.icon is defined and subItem.icon %}
@@ -95,10 +105,20 @@
                                             <li>
                                         {% endif %}
                                         <a
-                                                {% if item.callback is defined and item.callback %}
-                                                    href="{{ item.route ? path(item.route, {'callback': app.request.uri|callback }) : '#' }}"
+                                                {% if item.route is defined and item.route %}
+                                                    {% if item.callback is defined and item.callback %}
+                                                        href="{{ path(item.route, { 'callback': app.request.uri|callback }) }}"
+                                                    {% elseif item.id is defined and item.id %}
+                                                        href="{{ path(item.route, { 'id': item.id, 'callback': app.request.uri|callback }) }}"
+                                                    {% elseif item.slug is defined and item.slug %}
+                                                        href="{{ path(item.route, { 'slug': item.parameter.slug, 'callback': app.request.uri|callback }) }}"
+                                                    {% else %}
+                                                        href="{{ path(item.route) }}"
+                                                    {% endif %}
+                                                {% elseif item.anchor and item.anchor %}
+                                                    href="#{{ item.anchor }}"
                                                 {% else %}
-                                                    href="{{ item.route ? path(item.route) : '#' }}"
+                                                    href="#"
                                                 {% endif %}
                                         >
                                             {% if item.icon is defined and item.icon %}
@@ -118,10 +138,16 @@
                 <ul class="nav navbar-nav navbar-right">
                     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                         <li>
-                            <p class="navbar-text">
+                            <a href="{{ path('app_user_show', { 'slug': app.user.slug }) }}">
                                 <span class="glyphicon glyphicon-user"></span>
                                 {{ app.user.username }}
-                            </p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_user_edit', { 'slug': app.user.slug }) }}">
+                                <span class="glyphicon glyphicon-edit"></span>
+                                Modifier
+                            </a>
                         </li>
                         <li>
                             <a href="{{ path('app_logout') }}">

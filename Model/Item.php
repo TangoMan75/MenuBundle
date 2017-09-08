@@ -27,6 +27,21 @@ class Item implements \JsonSerializable
     private $route;
 
     /**
+     * @var boolean
+     */
+    private $callback;
+
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $slug;
+
+    /**
      * Current page internal anchor (without #)
      *
      * @var string
@@ -107,6 +122,66 @@ class Item implements \JsonSerializable
     public function setRoute($route)
     {
         $this->route = $route;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCallback()
+    {
+        return $this->callback;
+    }
+
+    /**
+     * @param bool $callback
+     *
+     * @return Item
+     */
+    public function setCallback($callback)
+    {
+        $this->callback = $callback;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return Item
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     *
+     * @return Item
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
 
         return $this;
     }

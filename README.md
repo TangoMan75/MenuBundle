@@ -112,7 +112,6 @@ class DefaultController extends Controller
         $menu->addItem($item);
 
         // You can use json format as well
-
         $navbar = '{
             "label": "TangoMan",
             "route": "homepage",
@@ -149,6 +148,7 @@ class DefaultController extends Controller
             ]
         }';
 
+        // You can also add id or slug to route parameters when necessary: 
         $tabs = '{
             "items": [
                 {
@@ -174,6 +174,13 @@ class DefaultController extends Controller
                     "route": "app_admin_user_export",
                     "active": "export",
                     "icon": "glyphicon glyphicon-export"
+                },
+                {
+                    "label": "Edit",
+                    "route": "app_admin_user_edit",
+                    "id": 1,
+                    "active": "edit",
+                    "icon": "glyphicon glyphicon-edit"
                 }
             ]
         }';
@@ -211,6 +218,18 @@ Step 5: Integrate in Twig
     {{ menu(menu, 'tabs') }}
 </div>
 ```
+
+How to use
+----------
+
+To make sure twig can create routes name them like following:
+ - 'app_login'
+ - 'app_check'
+ - 'app_logout'
+ - 'app_user_profile'
+ - 'app_user_edit'
+ - 'app_admin_index'
+ - 'homepage'
 
 Note
 ====
