@@ -21,10 +21,11 @@ This command requires you to have Composer installed globally, as explained
 in the [installation chapter](https://getcomposer.org/doc/00-intro.md)
 of the Composer documentation.
 
-Step 2: Enable the Bundle
--------------------------
+Step 2: Enable Bundles
+----------------------
 
-Then, enable the bundle by adding it to the list of registered bundles
+**TangoMan Menu Bundle** requires **TangoMan Callback Bundle** to function properly.  
+Enable both bundles by adding it to the list of registered bundles 
 in the `app/AppKernel.php` file of your project:
 
 ```php
@@ -40,6 +41,7 @@ class AppKernel extends Kernel
     {
         $bundles = array(
             // ...
+            new TangoMan\CallbackBundle\TangoManCallbackBundle(),
             new TangoMan\MenuBundle\TangoManMenuBundle(),
         );
 
