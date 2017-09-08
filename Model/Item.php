@@ -27,6 +27,13 @@ class Item implements \JsonSerializable
     private $route;
 
     /**
+     * Current page internal anchor (without #)
+     *
+     * @var string
+     */
+    private $anchor;
+
+    /**
      * Active item to be shown when route starts with or ends with
      * e.g: 'app_admin_user' or 'index'
      *
@@ -48,13 +55,6 @@ class Item implements \JsonSerializable
      * @var bool
      */
     private $divider;
-
-    /**
-     * Show dropDown
-     *
-     * @var bool
-     */
-    private $dropDown;
 
     /**
      * Roles granted privilege to see item
@@ -107,6 +107,26 @@ class Item implements \JsonSerializable
     public function setRoute($route)
     {
         $this->route = $route;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAnchor()
+    {
+        return $this->anchor;
+    }
+
+    /**
+     * @param string $anchor
+     *
+     * @return Item
+     */
+    public function setAnchor($anchor)
+    {
+        $this->anchor = $anchor;
 
         return $this;
     }
@@ -280,10 +300,6 @@ class Item implements \JsonSerializable
 
         if ($this->divider) {
             $json['divider'] = $this->divider;
-        }
-
-        if ($this->dropDown) {
-            $json['dropDown'] = $this->dropDown;
         }
 
         if (count($this->roles)) {

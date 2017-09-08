@@ -1,4 +1,4 @@
-{% if menu.items is defined and menu %}
+{#{% if menu.items is defined and menu %}#}
     {% if is_granted(app.user.roles, menu.roles ?? []) %}
         <nav class="navbar navbar-default">
             <ul class="nav nav-pills nav-stacked">
@@ -35,4 +35,4 @@
             </ul>
         </nav>
     {% endif %}
-{% endif %}
+{#{% endif %}#}
