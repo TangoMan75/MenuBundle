@@ -137,23 +137,33 @@
                 {% endif %}
                 <ul class="nav navbar-nav navbar-right">
                     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                        <li>
-                            <a href="{{ path('app_user_show', { 'slug': app.user.slug }) }}">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">
                                 <span class="glyphicon glyphicon-user"></span>
                                 {{ app.user.username }}
+                                <span class="caret"></span>
                             </a>
-                        </li>
-                        <li>
-                            <a href="{{ path('app_user_edit', { 'slug': app.user.slug }) }}">
-                                <span class="glyphicon glyphicon-edit"></span>
-                                Modifier
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ path('app_logout') }}">
-                                <span class="glyphicon glyphicon-off"></span>
-                                Déconnexion
-                            </a>
+                            <ul class="dropdown-menu">
+                                <li{% if app.request.attributes.get('_route') ends with 'show' %} class="active"{% endif %}>
+                                    <a href="{{ path('app_user_show', { 'slug': app.user.slug }) }}">
+                                        <span class="glyphicon glyphicon-user"></span>
+                                        Voir mon profil
+                                    </a>
+                                </li>
+                                <li{% if app.request.attributes.get('_route') ends with 'edit' %} class="active"{% endif %}>
+                                    <a href="{{ path('app_user_edit', { 'slug': app.user.slug }) }}">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                        Modifier mon profil
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('app_logout') }}">
+                                        <span class="glyphicon glyphicon-off"></span>
+                                        Déconnexion
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     {% else %}
                         <li><a href="{{ path('app_security_register') }}">
