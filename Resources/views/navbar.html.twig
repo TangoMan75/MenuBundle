@@ -70,10 +70,8 @@
                                                                                         {% else %}
                                                                                             href="{{ path(subItem.route) }}"
                                                                                         {% endif %}
-                                                                                    {% elseif subItem.anchor and subItem.anchor %}
-                                                                                        href="#{{ subItem.anchor }}"
                                                                                     {% else %}
-                                                                                        href="#"
+                                                                                        href="#{{ subItem.anchor ?? null }}"
                                                                                     {% endif %}
                                                                             >
                                                                                 {% if subItem.icon is defined and subItem.icon %}
@@ -124,10 +122,8 @@
                                                             {% else %}
                                                                 href="{{ path(item.route) }}"
                                                             {% endif %}
-                                                        {% elseif item.anchor and item.anchor %}
-                                                            href="#{{ item.anchor }}"
                                                         {% else %}
-                                                            href="#"
+                                                            href="#{{ item.anchor ?? null }}"
                                                         {% endif %}
                                                 >
                                                     {% if item.icon is defined and item.icon %}

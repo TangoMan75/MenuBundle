@@ -24,10 +24,8 @@
                                             {% else %}
                                                 href="{{ path(item.route) }}"
                                             {% endif %}
-                                        {% elseif item.anchor and item.anchor %}
-                                            href="#{{ item.anchor }}"
                                         {% else %}
-                                            href="#"
+                                            href="#{{ item.anchor ?? null }}"
                                         {% endif %}
                                 >
                                     {% if item.icon is defined and item.icon %}
