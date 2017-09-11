@@ -50,6 +50,22 @@ class Item implements \JsonSerializable
     private $slug;
 
     /**
+     * data-toggle attribute
+     * e.g: modal
+     *
+     * @var string
+     */
+    private $toggle;
+
+    /**
+     * data-target attribute
+     * e.g: myModal
+     *
+     * @var string
+     */
+    private $target;
+
+    /**
      * Current page internal anchor (without #)
      *
      * @var string
@@ -255,6 +271,46 @@ class Item implements \JsonSerializable
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToggle()
+    {
+        return $this->toggle;
+    }
+
+    /**
+     * @param string $toggle
+     *
+     * @return Item
+     */
+    public function setToggle($toggle)
+    {
+        $this->toggle = $toggle;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTarget()
+    {
+        return $this->target;
+    }
+
+    /**
+     * @param string $target
+     *
+     * @return Item
+     */
+    public function setTarget($target)
+    {
+        $this->target = $target;
 
         return $this;
     }

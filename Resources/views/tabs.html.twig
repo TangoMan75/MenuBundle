@@ -24,6 +24,12 @@
                                     {% else %}
                                         href="#{{ item.anchor ?? null }}"
                                     {% endif %}
+                                    {% if item.toggle is defined and item.toggle %}
+                                        data-toggle="{{ item.toggle }}"
+                                        {% if item.toggle is defined and item.toggle %}
+                                            data-toggle="{{ item.toggle }}"
+                                        {% endif %}
+                                    {% endif %}
                             >
                                 {% if item.icon is defined and item.icon %}
                                     <span class="{{ item.icon }}"></span>
