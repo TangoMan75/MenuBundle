@@ -36,6 +36,7 @@ class MenuExtension extends \Twig_Extension
             new \Twig_SimpleFunction(
                 'menu', [$this, 'menuFunction'], ['is_safe' => ['html'],]
             ),
+            new \Twig_SimpleFunction('multi_start_with', [$this, 'multiStartWithFunction']),
         ];
     }
 
@@ -66,5 +67,32 @@ class MenuExtension extends \Twig_Extension
                 'menu' => $menu,
             ]
         );
+    }
+
+    /**
+     * Checks if at least one item from given items starts with route
+     *
+     * @param string $needle
+     * @param array  $haystack
+     *
+     * @return bool
+     */
+    public function multiStartWithFunction($haystack = [], $needle)
+    {
+        if ($haystack == []) {
+            return true;
+        }
+
+        if (in_array($needle, $haystack)) {
+            return true;
+        } else {
+            foreach ($haystack as $item) {
+                if (strpos($needle, $item) === 0) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }

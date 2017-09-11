@@ -27,6 +27,14 @@ class Item implements \JsonSerializable
     private $route;
 
     /**
+     * Pages that should display item
+     * e.g: 'homepage'
+     *
+     * @var array
+     */
+    private $pages = [];
+
+    /**
      * @var boolean
      */
     private $callback;
@@ -122,6 +130,71 @@ class Item implements \JsonSerializable
     public function setRoute($route)
     {
         $this->route = $route;
+
+        return $this;
+    }
+
+    /**
+     * @param array $pages
+     *
+     * @return $this
+     */
+    public function setPages($pages)
+    {
+        $this->pages = $pages;
+
+        return $this;
+    }
+
+    /**
+     * @return array $pages
+     */
+    public function getPages()
+    {
+        return $this->pages;
+    }
+
+    /**
+     * @param string $page
+     *
+     * @return bool
+     */
+    public function hasPage($page)
+    {
+        if (in_array($page, $this->pages)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param string $page
+     *
+     * @return $this
+     */
+    public function addPage($page)
+    {
+        if (!$this->hasPage($page)) {
+            $this->pages[] = $page;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param string $page
+     *
+     * @return $this
+     */
+    public function removePage($page)
+    {
+        $pages = $this->pages;
+
+        if ($this->hasPage($page)) {
+            $remove[] = $page;
+            $this->pages = array_diff($pages, $remove);
+        }
 
         return $this;
     }
@@ -363,6 +436,10 @@ class Item implements \JsonSerializable
 
         if ($this->route) {
             $json['route'] = $this->route;
+        }
+
+        if (count($this->pages)) {
+            $json['pages'] = json_encode($this->pages);
         }
 
         if ($this->active) {
