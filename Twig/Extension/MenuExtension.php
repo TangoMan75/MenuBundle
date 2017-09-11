@@ -77,7 +77,7 @@ class MenuExtension extends \Twig_Extension
      *
      * @return bool
      */
-    public function multiStartWithFunction($haystack = [], $needle)
+    public function multiStartWithFunction($needle, $haystack = [])
     {
         if ($haystack == []) {
             return true;
