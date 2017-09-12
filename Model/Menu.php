@@ -12,6 +12,21 @@ use TangoMan\MenuBundle\Model\Item;
 class Menu implements \JsonSerializable
 {
     /**
+     * Base64 logo
+     *
+     * @var string
+     */
+    private $logo;
+
+    /**
+     * Font icon
+     * e.g: 'glyphicon glyphicon-user'
+     *
+     * @var string
+     */
+    private $icon;
+
+    /**
      * Label to be displayed
      *
      * @var string
@@ -35,21 +50,6 @@ class Menu implements \JsonSerializable
     private $pages = [];
 
     /**
-     * Base64 logo
-     *
-     * @var string
-     */
-    private $logo;
-
-    /**
-     * Font icon
-     * e.g: 'glyphicon glyphicon-user'
-     *
-     * @var string
-     */
-    private $icon;
-
-    /**
      * Roles granted privilege to see menu
      * e.g: ['ROLE_ADMIN', 'ROLE_SUPER_ADMIN']
      *
@@ -58,9 +58,51 @@ class Menu implements \JsonSerializable
     private $roles = [];
 
     /**
+     * Item collection
+     *
      * @var array
      */
     private $items = [];
+
+    /**
+     * @return string
+     */
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    /**
+     * @param string $logo
+     *
+     * @return $this
+     */
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIcon()
+    {
+        return $this->icon;
+    }
+
+    /**
+     * @param string $icon
+     *
+     * @return $this
+     */
+    public function setIcon($icon)
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
 
     /**
      * @return string
@@ -163,46 +205,6 @@ class Menu implements \JsonSerializable
             $remove[] = $page;
             $this->pages = array_diff($pages, $remove);
         }
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLogo()
-    {
-        return $this->logo;
-    }
-
-    /**
-     * @param string $logo
-     *
-     * @return $this
-     */
-    public function setLogo($logo)
-    {
-        $this->logo = $logo;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getIcon()
-    {
-        return $this->icon;
-    }
-
-    /**
-     * @param string $icon
-     *
-     * @return $this
-     */
-    public function setIcon($icon)
-    {
-        $this->icon = $icon;
 
         return $this;
     }

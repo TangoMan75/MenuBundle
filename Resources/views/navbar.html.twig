@@ -70,8 +70,8 @@
                                                                                         {% else %}
                                                                                             href="{{ path(subItem.route) }}"
                                                                                         {% endif %}
-                                                                                    {% else %}
-                                                                                        href="#{{ subItem.anchor ?? null }}"
+                                                                                    {% elseif subItem.anchor is defined and subItem.anchor %}
+                                                                                        href="{{ subItem.anchor }}"
                                                                                     {% endif %}
                                                                                     {% if subItem.toggle is defined and subItem.toggle %}
                                                                                         data-toggle="{{ subItem.toggle }}"
@@ -128,8 +128,8 @@
                                                             {% else %}
                                                                 href="{{ path(item.route) }}"
                                                             {% endif %}
-                                                        {% else %}
-                                                            href="#{{ item.anchor ?? null }}"
+                                                        {% elseif item.anchor is defined and item.anchor %}
+                                                            href="{{ item.anchor }}"
                                                         {% endif %}
                                                         {% if item.toggle is defined and item.toggle %}
                                                             data-toggle="{{ item.toggle }}"
