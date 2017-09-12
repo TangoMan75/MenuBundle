@@ -13,6 +13,7 @@ class Menu implements \JsonSerializable
 {
     /**
      * Base64 logo
+     * e.g.: 'data:image/jpeg;base64,/9j/4QAWRX'
      *
      * @var string
      */
@@ -20,7 +21,7 @@ class Menu implements \JsonSerializable
 
     /**
      * Font icon
-     * e.g: 'glyphicon glyphicon-user'
+     * e.g.: 'glyphicon glyphicon-user'
      *
      * @var string
      */
@@ -35,7 +36,7 @@ class Menu implements \JsonSerializable
 
     /**
      * Hyperlink route
-     * e.g: 'app_admin_user_index'
+     * e.g.: 'app_admin_user_index'
      *
      * @var string
      */
@@ -43,7 +44,7 @@ class Menu implements \JsonSerializable
 
     /**
      * Pages that should display menu
-     * e.g: 'homepage'
+     * e.g.: 'homepage'
      *
      * @var array
      */
@@ -51,7 +52,7 @@ class Menu implements \JsonSerializable
 
     /**
      * Roles granted privilege to see menu
-     * e.g: ['ROLE_ADMIN', 'ROLE_SUPER_ADMIN']
+     * e.g.: ['ROLE_ADMIN', 'ROLE_SUPER_ADMIN']
      *
      * @var array
      */

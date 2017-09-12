@@ -13,7 +13,7 @@ class Item implements \JsonSerializable
 {
     /**
      * Font icon
-     * e.g: 'glyphicon glyphicon-user'
+     * e.g.: 'glyphicon glyphicon-user'
      *
      * @var string
      */
@@ -28,7 +28,7 @@ class Item implements \JsonSerializable
 
     /**
      * Hyperlink route
-     * e.g: 'app_admin_user_index'
+     * e.g.: 'app_admin_user_index'
      *
      * @var string
      */
@@ -36,7 +36,7 @@ class Item implements \JsonSerializable
 
     /**
      * Active item to be shown when route starts with or ends with
-     * e.g: 'app_admin_user' or 'index'
+     * e.g.: 'app_admin_user' or 'index'
      *
      * @var string
      */
@@ -44,7 +44,7 @@ class Item implements \JsonSerializable
 
     /**
      * data-toggle attribute
-     * e.g: modal
+     * e.g.: modal
      *
      * @var string
      */
@@ -52,7 +52,7 @@ class Item implements \JsonSerializable
 
     /**
      * data-target attribute
-     * e.g: myModal
+     * e.g.: myModal
      *
      * @var string
      */
@@ -104,7 +104,7 @@ class Item implements \JsonSerializable
     /**
      * Pages that should display item
      * (null = all pages)
-     * e.g: 'homepage'
+     * e.g.: 'homepage'
      *
      * @var array
      */
@@ -113,7 +113,7 @@ class Item implements \JsonSerializable
     /**
      * Roles granted privilege to see item
      * (null = no restrictions)
-     * e.g: ['ROLE_ADMIN', 'ROLE_SUPER_ADMIN']
+     * e.g.: ['ROLE_ADMIN', 'ROLE_SUPER_ADMIN']
      *
      * @var array
      */
