@@ -12,6 +12,14 @@ use TangoMan\MenuBundle\Model\Menu;
 class Item implements \JsonSerializable
 {
     /**
+     * Font icon
+     * e.g: 'glyphicon glyphicon-user'
+     *
+     * @var string
+     */
+    private $icon;
+
+    /**
      * Label to be displayed
      *
      * @var string
@@ -27,27 +35,33 @@ class Item implements \JsonSerializable
     private $route;
 
     /**
+     * Pass callback link with route parameters
+     *
+     * @var boolean
+     */
+    private $callback;
+
+    /**
+     * Pass target id with route parameters
+     *
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * Pass target slug with route parameters
+     *
+     * @var string
+     */
+    private $slug;
+
+    /**
      * Pages that should display item
      * e.g: 'homepage'
      *
      * @var array
      */
     private $pages = [];
-
-    /**
-     * @var boolean
-     */
-    private $callback;
-
-    /**
-     * @var integer
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $slug;
 
     /**
      * data-toggle attribute
@@ -81,14 +95,6 @@ class Item implements \JsonSerializable
     private $active;
 
     /**
-     * Font icon
-     * e.g: 'glyphicon glyphicon-user'
-     *
-     * @var string
-     */
-    private $icon;
-
-    /**
      * Show divider
      *
      * @var bool
@@ -97,6 +103,7 @@ class Item implements \JsonSerializable
 
     /**
      * Roles granted privilege to see item
+     * (null = no restrictions)
      * e.g: ['ROLE_ADMIN', 'ROLE_SUPER_ADMIN']
      *
      * @var array

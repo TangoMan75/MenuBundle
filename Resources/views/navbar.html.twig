@@ -33,7 +33,7 @@
                                         {% if is_granted(item.subMenu.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
                                             {% if multi_start_with(app.request.attributes.get('_route'), item.subMenu.page ?? []) %}
                                                 <li class="dropdown">
-                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                                    <a class="dropdown-toggle" data-toggle="dropdown"
                                                        role="button"
                                                        aria-haspopup="true" aria-expanded="false">
                                                         {% if item.subMenu.icon is defined and item.subMenu.icon %}
@@ -75,8 +75,8 @@
                                                                                     {% endif %}
                                                                                     {% if subItem.toggle is defined and subItem.toggle %}
                                                                                         data-toggle="{{ subItem.toggle }}"
-                                                                                        {% if subItem.toggle is defined and subItem.toggle %}
-                                                                                            data-toggle="{{ subItem.toggle }}"
+                                                                                        {% if subItem.target is defined and subItem.target %}
+                                                                                            data-target="{{ subItem.target }}"
                                                                                         {% endif %}
                                                                                     {% endif %}
                                                                             >
@@ -133,8 +133,8 @@
                                                         {% endif %}
                                                         {% if item.toggle is defined and item.toggle %}
                                                             data-toggle="{{ item.toggle }}"
-                                                            {% if item.toggle is defined and item.toggle %}
-                                                                data-toggle="{{ item.toggle }}"
+                                                            {% if item.target is defined and item.target %}
+                                                                data-target="{{ item.target }}"
                                                             {% endif %}
                                                         {% endif %}
                                                 >
@@ -157,7 +157,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">
                                 <span class="glyphicon glyphicon-user"></span>
                                 {{ app.user.username }}

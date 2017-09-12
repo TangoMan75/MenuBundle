@@ -26,8 +26,8 @@
                                     {% endif %}
                                     {% if item.toggle is defined and item.toggle %}
                                         data-toggle="{{ item.toggle }}"
-                                        {% if item.toggle is defined and item.toggle %}
-                                            data-toggle="{{ item.toggle }}"
+                                        {% if item.target is defined and item.target %}
+                                            data-target="{{ item.target }}"
                                         {% endif %}
                                     {% endif %}
                             >
